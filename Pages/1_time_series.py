@@ -90,7 +90,7 @@ if select_box:
 
     # check for valid parameter set
     status = backend.check_sarimax_valid(p, d, q, P, D, Q, m)
-    if status is not None:
+    if status!=''   :
         st.text(status)
         st.stop()
 

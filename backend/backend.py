@@ -201,7 +201,7 @@ def check_sarimax_valid(p, d, q, PS, DS, QS, m):
     # Rule 2: m = 0 case
     if m == 0:
         if PS == 0 and DS == 0 and QS == 0:
-            return None
+            return ''
         else:
             return "❌ Invalid: Seasonal terms (P,D,Q) require m > 1."
 
@@ -222,4 +222,4 @@ def check_sarimax_valid(p, d, q, PS, DS, QS, m):
     if nonseasonal_ma_lags & seasonal_ma_lags:
         return f"❌ Invalid: Overlap in MA lags → {nonseasonal_ma_lags & seasonal_ma_lags}"
 
-    return None
+    return ''
