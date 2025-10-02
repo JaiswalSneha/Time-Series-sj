@@ -4,7 +4,7 @@ import streamlit as st
 from sklearn.metrics import mean_squared_error
 
 from backend import backend
-st.set_page_config(page_title="Wide app", layout="wide")
+st.set_page_config(page_title="Time Series Analysis", layout="wide")
 from statsmodels.tsa.seasonal import seasonal_decompose
 from statsmodels.tsa.stattools import adfuller
 from statsmodels.tsa.stattools import kpss
@@ -128,11 +128,11 @@ if select_box:
 
     # ======================== Product vs Time ==============================
     with col1:
-        st.markdown("### 📈 Product Sale v/s Time")
+        st.markdown("#### 📈 Product Sale v/s Time")
         backend.plot_line_graph(df)
     with col2:
         # --------------------Rolling Average -------------------------------
-        st.markdown("### 🔄 Rolling Average")
+        st.markdown("#### 🔄 Rolling Average")
         roll_df = pd.DataFrame()
         roll_df['sold'] = df['sold'].rolling(window=roll_avg).mean()
         roll_df['date'] = df['date']
@@ -140,7 +140,7 @@ if select_box:
         backend.plot_line_graph(roll_df, 'roll')
 
     with col3:
-        st.markdown("### 📊 Nature of the product")
+        st.markdown("#### 📊 Nature of the product")
         skew_status = backend.interpret_skewness(df['sold'].skew())
         skewness = np.round(df['sold'].skew(), 2)
         backend.plot_bar_graph(df, store_selected, product_selected)
@@ -153,13 +153,13 @@ if select_box:
     col_tsr1, col_tsr2, col_tsr3 = st.columns(3)
     with col_tsr1:
         decomp_additive = seasonal_decompose(df['sold'], model='additive', period=30)
-        st.markdown("### 📈 Trend")
+        st.markdown("#### 📈 Trend")
         backend.trend_season_resid(df, decomp_additive.trend, 'trend')
     with col_tsr2:
-        st.markdown("### 🌤️ Seasonal")
+        st.markdown("#### 🌤️ Seasonal")
         backend.trend_season_resid(df, decomp_additive.seasonal, 'season')
     with col_tsr3:
-        st.markdown("### 🧩 Residual")
+        st.markdown("#### 🧩 Residual")
         backend.trend_season_resid(df, decomp_additive.resid, 'residual')
 
 
@@ -168,13 +168,13 @@ if select_box:
 
     col_final1, col_final2,col_probhet= st.columns(3)
     with col_final1:
-        st.markdown("### 🎯 Test v/s Predicted")
+        st.markdown("#### 🎯 Test v/s Predicted")
         backend.final_prediction(test_data[0:forecast_size], predicted)
     with col_final2:
-        st.markdown(f"### ⚙️ p:{p},d:{d},q:{q},P:{P},D:{D},Q:{Q}, m:{m}")
+        st.markdown(f"#### ⚙️ p:{p},d:{d},q:{q},P:{P},D:{D},Q:{Q}, m:{m}")
         backend.final_forecast(df, predicted, forecast_size)
     with col_probhet:
-        st.markdown("### 🔮 Output from Prophet")
+        st.markdown("#### 🔮 Output from Prophet")
         backend.prophet_model(df, forecast_size)
 
 
@@ -322,10 +322,10 @@ if select_box:
 
     col21,col22 = st.columns(2)
     with col21:
-        st.markdown("### 📊 ACF : Autocorrelation Function")
+        st.markdown("#### 📊 ACF : Autocorrelation Function")
         backend.acf_pacf(df, 'acf', acf_pacf_lag)
     with col22:
-        st.markdown("### 📊 PACF : Partial Autocorrelation Function")
+        st.markdown("#### 📊 PACF : Partial Autocorrelation Function")
         backend.acf_pacf(df, 'pacf', acf_pacf_lag)
 
 
