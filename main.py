@@ -7,3 +7,5 @@ page3 = st.Page("Pages/3-Challenges_faced.py", title="Challenges Faced", icon="ð
 
 # Create navigation
 pg = st.navigation([page1, page2])
+
+pg.run()
