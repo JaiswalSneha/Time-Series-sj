@@ -171,7 +171,7 @@ if select_box:
         st.markdown("##### 🎯 Test v/s Predicted")
         backend.final_prediction(test_data[0:forecast_size], predicted)
     with col_final2:
-        st.markdown(f"##### ⚙️ p:{p},d:{d},q:{q},P:{P},D:{D},Q:{Q}, m:{m}")
+        st.markdown(f"##### ⚙️ SARIMAX")
         backend.final_forecast(df, predicted, forecast_size)
     with col_probhet:
         st.markdown("##### 🔮 Output from Prophet")
