@@ -7,8 +7,7 @@ from statsmodels.tsa.seasonal import seasonal_decompose
 from statsmodels.tsa.stattools import adfuller
 from statsmodels.tsa.stattools import kpss
 import time
-from utils.helper import import_backend
-backend = import_backend()
+from backend import backend
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 from pathlib import Path
 
