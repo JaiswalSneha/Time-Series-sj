@@ -87,7 +87,7 @@ kpss_result,kpss_stat,kpss_pvalue = 0,0,0
 if select_box:
 
     # check for valid parameter set
-    status = backend.check_sarimax_validity(p, d, q, P, D, Q, m)
+    status = backend.check_sarimax_valid(p, d, q, P, D, Q, m)
     if status is not None:
         st.text(status)
         st.stop()

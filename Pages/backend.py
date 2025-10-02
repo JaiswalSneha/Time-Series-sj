@@ -197,10 +197,10 @@ def differentiation(df_case3):
 
 
 
-def check_sarimax_validity(p, d, q, P, D, Q, m):
+def check_sarimax_valid(p, d, q, PS, DS, QS, m):
     # Rule 2: m = 0 case
     if m == 0:
-        if P == 0 and D == 0 and Q == 0:
+        if PS == 0 and DS == 0 and QS == 0:
             return None
         else:
             return "❌ Invalid: Seasonal terms (P,D,Q) require m > 1."
@@ -212,13 +212,13 @@ def check_sarimax_validity(p, d, q, P, D, Q, m):
 
     # Rule 4: Check overlap in AR lags
     nonseasonal_ar_lags = set(range(1, p+1))
-    seasonal_ar_lags = set([k*m for k in range(1, P+1)])
+    seasonal_ar_lags = set([k*m for k in range(1, PS+1)])
     if nonseasonal_ar_lags & seasonal_ar_lags:
         return f"❌ Invalid: Overlap in AR lags → {nonseasonal_ar_lags & seasonal_ar_lags}"
 
     # Rule 5: Check overlap in MA lags
     nonseasonal_ma_lags = set(range(1, q+1))
-    seasonal_ma_lags = set([k*m for k in range(1, Q+1)])
+    seasonal_ma_lags = set([k*m for k in range(1, QS+1)])
     if nonseasonal_ma_lags & seasonal_ma_lags:
         return f"❌ Invalid: Overlap in MA lags → {nonseasonal_ma_lags & seasonal_ma_lags}"
 
