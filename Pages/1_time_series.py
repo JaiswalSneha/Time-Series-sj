@@ -2,12 +2,14 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 from sklearn.metrics import mean_squared_error
+
+from backend import backend
+
 st.set_page_config(page_title="Wide app", layout="wide")
 from statsmodels.tsa.seasonal import seasonal_decompose
 from statsmodels.tsa.stattools import adfuller
 from statsmodels.tsa.stattools import kpss
 import time
-import backend
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 from pathlib import Path
 
