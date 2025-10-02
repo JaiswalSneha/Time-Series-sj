@@ -1,11 +1,9 @@
 import matplotlib.pyplot as plt
 import streamlit as st
-from Tools.scripts.make_ctype import values
 from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.preprocessing import StandardScaler
 import numpy as np
-from statsmodels.tsa.stattools import pacf
 import pandas as pd
 from prophet import Prophet
 
@@ -185,18 +183,6 @@ def prophet_model(df,forecast_size):
     ax.legend()
     st.pyplot(fig)
 
-
-def differentiation(df_case3):
-    fig, ax = plt.subplots()
-    ax.plot(df_case3.index, df_case3.values, label='After Differentiation', color='purple')
-    ax.set_xlabel('Date', fontsize=10)
-    ax.set_ylabel('Product sold', fontsize=10)
-    ax.tick_params(axis='x', labelsize=8)
-    ax.tick_params(axis='y', labelsize=8)
-    return st.pyplot(fig)
-
-
-
 def check_sarimax_valid(p, d, q, PS, DS, QS, m):
     # Rule 2: m = 0 case
     if m == 0:
@@ -208,7 +194,6 @@ def check_sarimax_valid(p, d, q, PS, DS, QS, m):
     # Rule 3: m = 1 case
     if m == 1:
         return "❌ Invalid: Seasonal period m=1 is not allowed."
-
 
     # Rule 4: Check overlap in AR lags
     nonseasonal_ar_lags = set(range(1, p+1))
@@ -223,3 +208,14 @@ def check_sarimax_valid(p, d, q, PS, DS, QS, m):
         return f"❌ Invalid: Overlap in MA lags → {nonseasonal_ma_lags & seasonal_ma_lags}"
 
     return ''
+
+
+def differentiation(df_case3):
+    fig, ax = plt.subplots()
+    ax.plot(df_case3.index, df_case3.values, label='After Differentiation', color='purple')
+    ax.set_xlabel('Date', fontsize=10)
+    ax.set_ylabel('Product sold', fontsize=10)
+    ax.tick_params(axis='x', labelsize=8)
+    ax.tick_params(axis='y', labelsize=8)
+    return st.pyplot(fig)
+

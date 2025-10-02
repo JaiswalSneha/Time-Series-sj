@@ -4,7 +4,6 @@ import streamlit as st
 from sklearn.metrics import mean_squared_error
 
 from backend import backend
-
 st.set_page_config(page_title="Wide app", layout="wide")
 from statsmodels.tsa.seasonal import seasonal_decompose
 from statsmodels.tsa.stattools import adfuller
